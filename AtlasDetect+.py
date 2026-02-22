@@ -95,14 +95,14 @@ class AtlasApp(ctk.CTk):
         fig = go.Figure()
         sync = random.randint(0, 100)
         
-        # 1. ТУСКЛЫЕ ФАЛЬШИВЫЕ ЦЕЛИ (Не соединены линиями)
+        # 1. ТУСКЛЫЕ ФАЛЬШИВЫЕ ЦЕЛИ не в паутине 
         dx = [random.uniform(-1.5, 1.5) for _ in range(6)]
         dy = [random.uniform(-1.5, 1.5) for _ in range(6)]
         fig.add_trace(go.Scatter(x=dx, y=dy, mode='markers', 
                                  marker=dict(size=9, symbol='diamond', color='#004400'),
                                  text=["[SIGNAL DECOY]"]*6, hoverinfo="text"))
 
-        # 2. ОСНОВНОЙ МАРШРУТ (С линиями)
+        # 2. ОСНОВНОЙ МАРШР типо 
         px = [random.uniform(-1.3, 1.3) for _ in range(7)]
         py = [random.uniform(-1.3, 1.3) for _ in range(7)]
         points = sorted(zip(px, py), key=lambda p: (p[0]**2 + p[1]**2))
@@ -121,7 +121,7 @@ class AtlasApp(ctk.CTk):
         for r in [0.3, 0.6, 0.9, 1.2, 1.5]:
             fig.add_shape(type="circle", x0=-r, y0=-r, x1=r, y1=r, line=dict(color="#00FF00", width=1), opacity=0.1)
 
-        # Инфо-блок
+        # Инфа
         fig.add_annotation(
             text=f"<b>ATLAS REPORT: {target.upper()}</b><br>STATUS: COMPROMISED<br>DECOYS FILTERED: 6<br>-----------------------<br>SYNC: {sync}%<br>OP ID: happy_goose",
             font=dict(family="Courier New", size=18, color="#00FF00"),
@@ -139,5 +139,6 @@ class AtlasApp(ctk.CTk):
 if __name__ == "__main__":
     app = AtlasApp()
     app.mainloop()
+
 
 
